@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    
+    <!-- Podrška za Apple (iOS) i Android kao aplikacija na početnom ekranu -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Claud's shop">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#09090b">
+
+    <title>Claud's shop | Privatni Katalog</title>
+    <script src="https://tailwindcss.com"></script>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #09090b;
+            color: #f4f4f5;
+            /* Reljefna crna tekstura sa zlatnim šljokicama */
+            background-image: 
+                radial-gradient(rgba(212, 175, 55, 0.24) 1px, transparent 0),
+                radial-gradient(rgba(255, 223, 100, 0.15) 1.5px, transparent 0),
+                linear-gradient(135deg, #09090b 0%, #161310 50%, #09090b 100%);
+            background-size: 32px 32px, 48px 48px, 100% 100%;
+            background-position: 0 0, 16px 16px, 0 0;
+        }
+
+        .font-luxury {
+            font-family: 'Cinzel', serif;
+        }
+
+        .gold-text {
+            background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Reljefni zlatni oblačići za kategorije */
+        .gold-cloud {
+            background: linear-gradient(145deg, #1c1915, #110f0d);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            box-shadow: 
+                0 6px 15px rgba(0, 0, 0, 0.7),
+                inset 0 1px 1px rgba(255, 236, 153, 0.35),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.8);
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .gold-cloud:hover, .gold-cloud.active {
+            background: linear-gradient(135deg, #bf953f 0%, #e5c365 50%, #aa771c 100%);
+            color: #09090b;
+            border-color: #fcf6ba;
+            transform: translateY(-2px);
+            box-shadow: 
+                0 8px 20px rgba(212, 175, 55, 0.35),
+                inset 0 2px 3px rgba(255, 255, 255, 0.6);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #bf953f, #e6c667, #aa771c);
+            color: #09090b;
+            font-weight: 700;
+            box-shadow: 0 4px 14px rgba(212, 175, 55, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+            transition: all 0.2s ease;
+        }
+
+        .btn-gold:active {
+            transform: scale(0.98);
+        }
+
+        .luxury-card {
+            background: linear-gradient(160deg, rgba(28, 25, 22, 0.96), rgba(14, 13, 12, 0.99));
+            border: 1px solid rgba(212, 175, 55, 0.28);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(252, 246, 186, 0.15);
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <!-- Navigacija -->
+    <header class="bg-black/85 backdrop-blur-md border-b border-amber-500/30 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 h-16 sm:h-20 flex items-center justify-between">
+            <a href="#" class="font-luxury text-xl sm:text-3xl font-bold gold-text tracking-wider">
+                ✦ CLAUD'S SHOP
+            </a>
+            <a href="#placanje" class="text-xs sm:text-sm border border-amber-500/40 text-amber-200 hover:bg-amber-500/10 px-3.5 py-2 rounded-full transition">
+                Uplata & Podaci
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Sekcija -->
+    <section class="pt-8 pb-6 sm:py-12 px-4 text-center">
+        <div class="max-w-3xl mx-auto">
+            <span class="inline-block text-[11px] sm:text-xs uppercase tracking-[0.2em] text-amber-400/90 mb-2.5 border border-amber-500/30 px-3.5 py-1 rounded-full bg-black/50">
+                Privatna rasprodaja • Android • iOS • Windows
+            </span>
+            <h1 class="font-luxury text-2xl sm:text-5xl font-bold gold-text mb-3 leading-tight">
+                Odabrani komadi iz privatne kolekcije
+            </h1>
+            <p class="text-stone-300 text-xs sm:text-base max-w-2xl mx-auto">
+                Očuvana odjeća, obuća, kućanske stvari, alati, knjige, antikviteti, igračke i oprema za djecu.
+            </p>
+        </div>
+
+        <!-- Posebni oblačići za kategorije -->
+        <div class="max-w-5xl mx-auto mt-6">
+            <div class="flex sm:flex-wrap overflow-x-auto no-scrollbar sm:justify-center gap-2.5 pb-2 px-1" id="category-clouds">
+                <!-- Oblačići se učitavaju automatski -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Katalog Proizvoda -->
+    <main class="max-w-7xl mx-auto px-4 pb-14 flex-grow w-full">
+        <div id="items-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Predmeti se učitavaju ovdje -->
+        </div>
+    </main>
+
+    <!-- Sekcija: Načini plaćanja i točni podaci -->
+    <section id="placanje" class="border-t border-amber-500/20 bg-black/75 py-10 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-7">
+                <h2 class="font-luxury text-xl sm:text-2xl font-bold gold-text mb-1.5">Podaci za uplatu</h2>
+                <p class="text-stone-400 text-xs sm:text-sm">Brza uplata putem Aircasha ili m-Bankinga na svim uređajima</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <!-- m-Banking / Uplatnica -->
+                <div class="luxury-card p-5 sm:p-6 rounded-2xl">
+                    <div class="text-amber-400 font-bold text-base sm:text-lg mb-3">🏦 Podaci za m-Banking / Uplatnicu</div>
+                    <div class="space-y-2 text-xs sm:text-sm text-stone-300">
+                        <div class="flex justify-between border-b border-amber-500/10 pb-1.5">
+                            <span class="text-stone-400">Primatelj:</span>
+                            <span class="font-semibold text-white">Klaudija Birkić</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-amber-500/10 pb-1.5">
+                            <span class="text-stone-400">Broj računa (IBAN):</span>
+                            <div class="flex items-center gap-2">
+                                <span class="font-mono font-semibold text-amber-300">HR6423600001300206618</span>
+                                <button onclick="copyText('HR6423600001300206618', this)" class="bg-amber-500/20 text-amber-200 px-2 py-0.5 rounded text-[11px]">Kopiraj</button>
+                            </div>
+                        </div>
+                        <div class="flex justify-between border-b border-amber-500/10 pb-1.5">
+                            <span class="text-stone-400">Model:</span>
+                            <span class="font-mono font-semibold text-white">HR00</span>
+                        </div>
+                        <div class="flex justify-between items-center pt-0.5">
+                            <span class="text-stone-400">Poziv na broj (OBAVEZNO):</span>
+                            <div class="flex items-center gap-2">
+                                <span class="font-mono font-bold text-amber-300">6829324089</span>
+                                <button onclick="copyText('6829324089', this)" class="bg-amber-500/20 text-amber-200 px-2 py-0.5 rounded text-[11px]">Kopiraj</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aircash -->
+                <div class="luxury-card p-5 sm:p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="text-amber-400 font-bold text-base sm:text-lg mb-2">⚡ Aircash (acpay)</div>
+                        <p class="text-stone-400 text-xs sm:text-sm mb-4">
+                            Kliknite na link ispod za trenutnu uplatu putem Aircash aplikacije na Androidu ili iPhoneu.
+                        </p>
+                    </div>
+                    <div class="bg-black/50 border border-amber-500/30 rounded-xl p-4">
+                        <a href="https://aircash.eu" target="_blank" rel="noopener noreferrer" class="text-amber-300 font-mono text-xs sm:text-sm underline break-all block mb-3">
+                            https://aircash.eu
+                        </a>
+                        <a href="https://aircash.eu" target="_blank" rel="noopener noreferrer" class="block w-full text-center btn-gold py-3 rounded-xl text-xs uppercase tracking-wider">
+                            Plati putem Aircasha ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-amber-500/20 py-6 text-center text-xs text-stone-500 px-4">
+        <p class="font-luxury text-amber-400/90 text-sm mb-1">CLAUD'S SHOP</p>
+        <p>Dostupno na Android, Apple (iOS) i Windows uređajima</p>
+    </footer>
+
+    <!-- Modal za Kupnju i Plaćanje -->
