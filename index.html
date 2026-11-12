@@ -905,8 +905,4 @@ function copyUpdatedProductsCode(btn) {
 const codeText = "const defaultProducts = " + JSON.stringify(products, null, 4) + ";";
 navigator.clipboard.writeText(codeText);
 btn.innerText = "Kopirano! Zalijepi u index.html";
-setTimeout(() => btn.innerText = "Kopiraj ažurirani kod za GitHub", 3000);
-}
-renderCategories();
-renderProducts();
-updateCartUI();
+setTimeout(() =
