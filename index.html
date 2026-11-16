@@ -1,1056 +1,404 @@
 <!DOCTYPE html>
 <html lang="hr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claud's shop | Privatna Kolekcija</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09090b">
+  <title>Claud's shop | Privatna kolekcija</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #09090b;
-      --bg-soft: #1b1814;
-      --panel: rgba(17, 15, 12, 0.9);
-      --gold: #d4af37;
-      --gold-soft: #e5c365;
-      --gold-deep: #aa771c;
-      --text: #f4f4f5;
-      --muted: #a1a1aa;
-      --line: rgba(212, 175, 55, 0.35);
-      --danger: #ef4444;
-    }
-
-    * { box-sizing: border-box; }
-
-    html, body {
-      margin: 0;
-      min-height: 100%;
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
-
-    body {
-      background-image:
-        radial-gradient(rgba(212, 175, 55, 0.25) 1px, transparent 0),
-        radial-gradient(rgba(255, 223, 100, 0.16) 1.5px, transparent 0),
-        linear-gradient(135deg, #09090b 0%, #171410 50%, #09090b 100%);
-      background-size: 32px 32px, 48px 48px, 100% 100%;
-      background-position: 0 0, 16px 16px, 0 0;
-    }
-
-    .gold-text {
-      background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(9, 9, 11, 0.95);
-      border-bottom: 1px solid var(--line);
-      padding: 14px 16px;
-    }
-
-    .header-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .logo {
-      font-family: 'Cinzel', serif;
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-decoration: none;
-      color: var(--text);
-    }
-
-    .cart-btn {
-      background: linear-gradient(145deg, #1f1b16, #12100d);
-      border: 1px solid rgba(212, 175, 55, 0.55);
-      color: #fcf6ba;
-      padding: 9px 15px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-    }
-
-    .cart-badge {
-      background: linear-gradient(135deg, #bf953f, #fcf6ba);
-      color: #09090b;
-      font-weight: 700;
-      font-size: 12px;
-      padding: 2px 8px;
-      border-radius: 999px;
-      min-width: 22px;
-      text-align: center;
-    }
-
-    .hero {
-      text-align: center;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 26px 16px 14px;
-    }
-
-    .hero-tag {
-      display: inline-block;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--gold-soft);
-      border: 1px solid rgba(212, 175, 55, 0.35);
-      padding: 5px 14px;
-      border-radius: 999px;
-      background: rgba(0, 0, 0, 0.6);
-      margin-bottom: 12px;
-    }
-
-    .hero h1 {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(28px, 5vw, 42px);
-      margin: 0 0 10px;
-    }
-
-    .hero p {
-      color: #d4d4d8;
-      font-size: 14px;
-      line-height: 1.5;
-      margin: 0;
-    }
-
-    .categories-section {
-      max-width: 1100px;
-      margin: 14px auto 24px;
-      padding: 0 16px;
-      width: 100%;
-    }
-
-    .categories-title {
-      text-align: center;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-
-    .categories-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    @media (min-width: 640px) {
-      .categories-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-    }
-
-    .cat-box {
-      background: linear-gradient(145deg, #1d1914, #100e0b);
-      border: 1px solid rgba(212, 175, 55, 0.35);
-      border-radius: 14px;
-      padding: 12px 6px;
-      text-align: center;
-      color: var(--text);
-      cursor: pointer;
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.7);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      min-height: 74px;
-    }
-
-    .cat-box.active {
-      background: linear-gradient(135deg, #bf953f 0%, #e5c365 50%, #aa771c 100%);
-      color: #09090b;
-      border-color: #fcf6ba;
-      font-weight: 700;
-    }
-
-    .cat-icon { font-size: 22px; }
-    .cat-name { font-size: 12px; font-weight: 600; line-height: 1.2; }
-
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 16px 40px;
-      width: 100%;
-      flex-grow: 1;
-    }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-
-    @media (min-width: 640px) { .products-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    @media (min-width: 960px) { .products-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-
-    .product-card {
-      background: linear-gradient(160deg, #1b1814, #0f0d0b);
-      border: 1px solid rgba(212, 175, 55, 0.35);
-      border-radius: 18px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.85);
-    }
-
-    .product-img-wrap {
-      position: relative;
-      width: 100%;
-      height: 230px;
-      cursor: pointer;
-      background: #14120f;
-    }
-
-    .product-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .badge-condition {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: rgba(9, 9, 11, 0.88);
-      border: 1px solid rgba(212, 175, 55, 0.5);
-      color: #fcf6ba;
-      font-size: 11px;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 999px;
-    }
-
-    .product-body { padding: 16px; }
-    .product-cat {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: #d4af37;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-    .product-title {
-      font-size: 18px;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 6px;
-    }
-    .product-desc {
-      font-size: 13px;
-      color: #a1a1aa;
-      line-height: 1.45;
-      min-height: 38px;
-    }
-    .product-footer {
-      padding: 14px 16px;
-      border-top: 1px solid rgba(212, 175, 55, 0.2);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-    .product-price { font-size: 21px; font-weight: 700; }
-    .card-actions { display: flex; gap: 8px; }
-    .btn-outline,
-    .btn-gold,
-    .copy-mini,
-    .remove-btn,
-    .modal-close,
-    .secret-admin-trigger,
-    .admin-button,
-    .checkout-btn {
-      font: inherit;
-    }
-    .btn-outline {
-      background: transparent;
-      border: 1px solid rgba(212, 175, 55, 0.5);
-      color: #fcf6ba;
-      padding: 9px 13px;
-      border-radius: 10px;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    .btn-gold {
-      background: linear-gradient(135deg, #bf953f, #e6c667, #aa771c);
-      color: #09090b;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 10px;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .info-box-section {
-      max-width: 1100px;
-      margin: 0 auto 36px;
-      padding: 0 16px;
-      width: 100%;
-    }
-
-    .info-window {
-      background: linear-gradient(160deg, #1c1813, #0e0c0a);
-      border: 1.5px solid rgba(212, 175, 55, 0.55);
-      border-radius: 22px;
-      padding: 22px 18px;
-    }
-
-    .info-window-header {
-      text-align: center;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.25);
-      padding-bottom: 14px;
-      margin-bottom: 18px;
-    }
-
-    .info-window-header h2 {
-      font-family: 'Cinzel', serif;
-      font-size: 21px;
-      margin: 0 0 4px;
-    }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
-    }
-
-    @media (min-width: 768px) {
-      .info-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-    .info-panel {
-      background: rgba(0, 0, 0, 0.45);
-      border: 1px solid rgba(212, 175, 55, 0.25);
-      border-radius: 16px;
-      padding: 16px;
-    }
-
-    .info-panel h3 {
-      color: #e5c365;
-      font-size: 16px;
-      margin: 0 0 12px;
-    }
-
-    .data-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      font-size: 13px;
-      gap: 8px;
-    }
-    .data-row:last-child { border-bottom: none; }
-    .data-label { color: #a1a1aa; }
-    .data-value {
-      color: #ffffff;
-      font-weight: 600;
-      text-align: right;
-      word-break: break-all;
-    }
-    .copy-mini {
-      background: rgba(212, 175, 55, 0.22);
-      border: 1px solid rgba(212, 175, 55, 0.45);
-      color: #fcf6ba;
-      padding: 4px 8px;
-      border-radius: 6px;
-      font-size: 11px;
-      cursor: pointer;
-      margin-left: 6px;
-    }
-    .aircash-link {
-      display: block;
-      color: #fcf6ba;
-      font-size: 13px;
-      word-break: break-all;
-      margin: 8px 0;
-      text-decoration: underline;
-    }
-    .delivery-list {
-      list-style: none;
-      font-size: 13px;
-      color: #d4d4d8;
-      line-height: 1.7;
-      padding: 0;
-      margin: 0;
-    }
-    .delivery-list li::before { content: "✦ "; color: #d4af37; }
-
-    footer {
-      background: #050506;
-      border-top: 1px solid rgba(212, 175, 55, 0.2);
-      text-align: center;
-      padding: 20px 16px;
-      font-size: 12px;
-      color: #71717a;
-    }
-
-    .secret-admin-trigger {
-      background: none;
-      border: none;
-      color: #3f3f46;
-      font-size: 16px;
-      cursor: pointer;
-      margin-top: 10px;
-      padding: 6px;
-    }
-
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.92);
-      z-index: 50;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-    }
-    .modal-backdrop.open { display: flex; }
-    .modal-card {
-      background: linear-gradient(160deg, #1d1914, #0f0d0b);
-      border: 1px solid rgba(212, 175, 55, 0.55);
-      border-radius: 20px;
-      width: 100%;
-      max-width: 480px;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 20px;
-      position: relative;
-    }
-    .modal-close {
-      position: absolute;
-      top: 12px;
-      right: 16px;
-      background: none;
-      border: none;
-      color: #a1a1aa;
-      font-size: 30px;
-      line-height: 1;
-      cursor: pointer;
-    }
-
-    .modal-content h3 {
-      margin: 0 0 14px;
-      font-size: 22px;
-      font-family: 'Cinzel', serif;
-    }
-
-    .detail-image {
-      width: 100%;
-      height: 270px;
-      object-fit: cover;
-      border-radius: 16px;
-      display: block;
-      margin-bottom: 16px;
-      border: 1px solid rgba(212, 175, 55, 0.25);
-    }
-
-    .detail-cat {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: #d4af37;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-    .detail-title {
-      font-size: 28px;
-      margin: 0 0 6px;
-      font-family: 'Cinzel', serif;
-    }
-    .detail-condition { color: #f1d686; font-weight: 700; margin-bottom: 10px; }
-    .detail-desc { color: #d4d4d8; line-height: 1.6; margin: 0 0 16px; }
-    .detail-price { font-size: 22px; font-weight: 700; margin-bottom: 16px; }
-
-    .cart-item-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
-      gap: 10px;
-    }
-    .remove-btn {
-      background: rgba(239, 68, 68, 0.18);
-      color: #fca5a5;
-      border: 1px solid rgba(239, 68, 68, 0.35);
-      padding: 5px 10px;
-      border-radius: 8px;
-      font-size: 12px;
-      cursor: pointer;
-    }
-
-    .radio-box {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 11px;
-      border: 1px solid rgba(212, 175, 55, 0.35);
-      border-radius: 12px;
-      margin-bottom: 8px;
-      background: rgba(0, 0, 0, 0.45);
-      font-size: 13px;
-      cursor: pointer;
-    }
-    .radio-box input { accent-color: var(--gold); }
-
-    .admin-form { margin-top: 10px; }
-    .admin-label {
-      display: block;
-      font-size: 12px;
-      color: #e5c365;
-      margin-bottom: 4px;
-      font-weight: 600;
-    }
-    .admin-input,
-    .admin-select,
-    .admin-textarea {
-      width: 100%;
-      background: #09090b;
-      border: 1px solid rgba(212, 175, 55, 0.4);
-      color: #fff;
-      padding: 10px 12px;
-      border-radius: 10px;
-      font-size: 14px;
-      margin-bottom: 10px;
-      font-family: inherit;
-    }
-    .admin-textarea { min-height: 100px; resize: vertical; }
-    .admin-button {
-      background: linear-gradient(135deg, #bf953f, #e6c667, #aa771c);
-      color: #09090b;
-      border: none;
-      padding: 10px 16px;
-      border-radius: 10px;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .empty-state {
-      color: #a1a1aa;
-      font-size: 13px;
-      text-align: center;
-      padding: 16px 0;
-    }
-
-    @media (max-width: 500px) {
-      .header-inner { align-items: flex-start; }
-      .cart-btn { padding: 8px 12px; }
-      .product-footer { flex-direction: column; align-items: flex-start; }
-      .card-actions { width: 100%; }
-      .card-actions button { flex: 1; }
-    }
+    :root{color-scheme:dark;--bg:#09090b;--panel:#171410;--gold:#d4af37;--gold-light:#fcf6ba;--text:#f4f4f5;--muted:#a1a1aa;--line:rgba(212,175,55,.35)}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;background-color:var(--bg);background-image:radial-gradient(rgba(212,175,55,.18) 1px,transparent 0),linear-gradient(135deg,#09090b,#171410 50%,#09090b);background-size:32px 32px,100% 100%;color:var(--text);font-family:'Plus Jakarta Sans',Arial,sans-serif}
+    button,a{font:inherit}
+    button{cursor:pointer}
+    .site-header{position:sticky;top:0;z-index:5;background:rgba(9,9,11,.96);border-bottom:1px solid var(--line);padding:14px 16px}
+    .header-inner{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .logo{color:var(--gold-light);font-family:Cinzel,Georgia,serif;font-weight:700;letter-spacing:1px;text-decoration:none}
+    .cart-button,.button-gold,.button-outline,.copy-button{border-radius:10px;font-weight:700}
+    .cart-button{border:1px solid var(--line);background:#171410;color:var(--gold-light);padding:9px 14px;border-radius:999px}
+    .cart-count{display:inline-block;margin-left:6px;border-radius:99px;background:var(--gold-light);color:#09090b;padding:2px 8px}
+    .hero{max-width:900px;margin:auto;padding:36px 16px 18px;text-align:center}
+    .eyebrow{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:5px 14px;color:var(--gold-light);font-size:11px;letter-spacing:2px;text-transform:uppercase}
+    h1,h2{font-family:Cinzel,Georgia,serif}
+    h1{font-size:clamp(28px,5vw,44px);line-height:1.2;margin:14px 0 10px;background:linear-gradient(135deg,#bf953f,#fcf6ba,#aa771c);background-clip:text;-webkit-background-clip:text;color:transparent}
+    .hero p{color:#d4d4d8;line-height:1.6;margin:0 auto;max-width:700px;font-size:14px}
+    .categories,.products,.info{max-width:1100px;margin:20px auto;padding:0 16px}
+    .section-label{text-align:center;color:var(--muted);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px}
+    .category-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    .category-button{min-height:72px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(145deg,#1d1914,#100e0b);color:var(--text);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:10px 5px;font-size:12px}
+    .category-button.active{background:linear-gradient(135deg,#bf953f,#e5c365,#aa771c);color:#09090b;border-color:var(--gold-light);font-weight:700}
+    .category-icon{font-size:21px}
+    .product-grid{display:grid;grid-template-columns:1fr;gap:18px}
+    .product-card{overflow:hidden;border:1px solid var(--line);border-radius:18px;background:linear-gradient(160deg,#1b1814,#0f0d0b);box-shadow:0 10px 25px rgba(0,0,0,.5);display:flex;flex-direction:column}
+    .product-image{height:230px;width:100%;object-fit:cover;background:#14120f;cursor:pointer}
+    .product-content{padding:15px;flex:1}
+    .product-category{color:var(--gold);font-size:11px;letter-spacing:1.4px;text-transform:uppercase;font-weight:700}
+    .product-title{font-size:17px;margin:5px 0}
+    .product-condition{font-size:12px;color:var(--gold-light);margin-bottom:8px}
+    .product-description{font-size:13px;color:var(--muted);line-height:1.5;margin:0}
+    .product-footer{padding:13px 15px;border-top:1px solid rgba(212,175,55,.2);display:flex;justify-content:space-between;align-items:center;gap:10px}
+    .product-price{font-size:20px;font-weight:700;white-space:nowrap}
+    .actions{display:flex;gap:8px}
+    .button-gold,.button-outline,.copy-button{padding:9px 12px;font-size:13px}
+    .button-gold{border:0;background:linear-gradient(135deg,#bf953f,#e6c667,#aa771c);color:#09090b}
+    .button-outline{border:1px solid rgba(212,175,55,.5);background:transparent;color:var(--gold-light)}
+    .info-box{border:1px solid var(--line);border-radius:20px;background:linear-gradient(160deg,#1c1813,#0e0c0a);padding:20px}
+    .info-box h2{text-align:center;font-size:22px;margin:0 0 5px}
+    .info-intro{text-align:center;color:#d4d4d8;font-size:13px;margin:0 0 18px}
+    .info-grid{display:grid;grid-template-columns:1fr;gap:14px}
+    .info-panel{border:1px solid rgba(212,175,55,.25);border-radius:15px;background:rgba(0,0,0,.35);padding:15px}
+    .info-panel h3{margin:0 0 10px;color:#e5c365;font-size:15px}
+    .data-row{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:13px}
+    .data-row:last-of-type{border-bottom:0}
+    .data-label{color:var(--muted)}.data-value{text-align:right;font-weight:600;overflow-wrap:anywhere}
+    .copy-button{margin:8px 6px 0 0;border:1px solid rgba(212,175,55,.45);background:rgba(212,175,55,.18);color:var(--gold-light)}
+    .aircash-link{display:block;color:var(--gold-light);margin:10px 0;font-size:13px}
+    .delivery-list{margin:0;padding:0;list-style:none;color:#d4d4d8;font-size:13px;line-height:1.8}
+    .delivery-list li::before{content:'✦ ';color:var(--gold)}
+    footer{text-align:center;border-top:1px solid rgba(212,175,55,.2);background:#050506;color:#71717a;padding:20px 16px;font-size:12px;margin-top:30px}
+    .modal-backdrop{position:fixed;inset:0;z-index:10;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.88)}
+    .modal-backdrop.open{display:flex}
+    .modal-card{position:relative;width:min(100%,480px);max-height:90vh;overflow:auto;padding:22px 18px;border:1px solid rgba(212,175,55,.55);border-radius:18px;background:linear-gradient(160deg,#1d1914,#0f0d0b)}
+    .modal-close{position:absolute;top:8px;right:12px;border:0;background:transparent;color:var(--muted);font-size:30px;line-height:1}
+    .modal-card h2{font-size:22px;margin:0 34px 14px 0}
+    .detail-image{width:100%;height:250px;object-fit:cover;border-radius:12px;margin-bottom:12px;background:#14120f}
+    .detail-category{color:var(--gold);font-size:11px;text-transform:uppercase;letter-spacing:1px}
+    .detail-description{color:#d4d4d8;line-height:1.6;font-size:14px}
+    .detail-price{font-size:22px;font-weight:700;margin:14px 0}
+    .cart-item{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid rgba(212,175,55,.15)}
+    .remove-button{border:1px solid rgba(239,68,68,.4);border-radius:8px;background:rgba(239,68,68,.15);color:#fca5a5;padding:6px 9px;font-size:12px}
+    .radio-label{display:flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0;background:rgba(0,0,0,.3);font-size:13px}
+    .radio-label input{accent-color:var(--gold)}
+    .empty-state{text-align:center;color:var(--muted);padding:18px 0;font-size:13px}
+    .modal-total{font-weight:700;margin-top:14px}
+    @media(min-width:640px){.category-grid{grid-template-columns:repeat(5,minmax(0,1fr))}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.info-grid{grid-template-columns:1fr 1fr}.delivery-panel{grid-column:1/-1}}
+    @media(min-width:960px){.product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media(max-width:500px){.product-footer{align-items:flex-start;flex-direction:column}.actions{width:100%}.actions button{flex:1}.logo{font-size:17px}}
   </style>
 </head>
 <body>
-  <header>
+  <header class="site-header">
     <div class="header-inner">
-      <a href="#" class="logo">CLAUD'S SHOP</a>
-      <button class="cart-btn" type="button" onclick="openCart()">
-        <span>🛍️ Košarica</span>
-        <span id="cart-count" class="cart-badge">0</span>
-      </button>
+      <a class="logo" href="#top">CLAUD'S SHOP</a>
+      <button id="open-cart" class="cart-button" type="button" aria-label="Otvori košaricu">🛍️ Košarica <span id="cart-count" class="cart-count">0</span></button>
     </div>
   </header>
 
-  <section class="hero">
-    <span class="hero-tag">Privatna kolekcija</span>
-    <h1 class="gold-text">Ekskluzivni komadi s posebnom povijesti</h1>
-    <p>Odabrani predmeti iz privatne ponude. Odaberite kategoriju ispod, pregledajte detalje i dodajte željene artikle u košaricu.</p>
-  </section>
+  <main id="top">
+    <section class="hero">
+      <span class="eyebrow">Privatna kolekcija</span>
+      <h1>Claud's shop</h1>
+      <p>Odabrani komadi iz privatne ponude. Odaberite kategoriju, pregledajte detalje i dodajte željene artikle u košaricu.</p>
+    </section>
 
-  <section class="categories-section">
-    <div class="categories-title">Odaberi kategoriju proizvoda</div>
-    <div id="categories-grid" class="categories-grid"></div>
-  </section>
+    <section class="categories" aria-label="Kategorije proizvoda">
+      <div class="section-label">Odaberi kategoriju proizvoda</div>
+      <div id="categories-grid" class="category-grid"></div>
+    </section>
 
-  <main>
-    <div id="products-grid" class="products-grid"></div>
+    <section class="products" aria-label="Proizvodi">
+      <div id="products-grid" class="product-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="info" aria-label="Uplata i dostava">
+      <div class="info-box">
+        <h2>Detalji uplate i dostave</h2>
+        <p class="info-intro">Sve informacije za brzu kupnju i slanje paketa</p>
+        <div class="info-grid">
+          <div class="info-panel">
+            <h3>🏦 Podaci za uplatu</h3>
+            <div class="data-row"><span class="data-label">Primatelj</span><span class="data-value">Klaudija Birkić</span></div>
+            <div class="data-row"><span class="data-label">IBAN</span><span class="data-value">HR6423600001300206618</span></div>
+            <div class="data-row"><span class="data-label">Model</span><span class="data-value">HR00</span></div>
+            <div class="data-row"><span class="data-label">Poziv na broj</span><span class="data-value">6829324089</span></div>
+            <button class="copy-button" type="button" data-copy="HR6423600001300206618">Kopiraj IBAN</button>
+            <button class="copy-button" type="button" data-copy="6829324089">Kopiraj poziv na broj</button>
+          </div>
+          <div class="info-panel">
+            <h3>⚡ Aircash</h3>
+            <a class="aircash-link" href="https://aircash.eu" target="_blank" rel="noopener noreferrer">Otvori Aircash ↗</a>
+          </div>
+          <div class="info-panel delivery-panel">
+            <h3>📦 Načini i uvjeti dostave</h3>
+            <ul class="delivery-list">
+              <li>Tisak paket: slanje na odabrani kiosk Tiska diljem Hrvatske.</li>
+              <li>BoxNow paketomat: dostava na najbliži paketomat.</li>
+              <li>Hrvatska pošta / GLS: dostava na kućnu adresu.</li>
+              <li>Osobno preuzimanje moguće je po dogovoru.</li>
+              <li>Paketi se šalju nakon vidljive uplate.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <section class="info-box-section">
-    <div class="info-window">
-      <div class="info-window-header">
-        <h2>Detalji uplate i dostave</h2>
-        <p style="margin:0;color:#d4d4d8;">Sve informacije za brzu kupnju i slanje paketa</p>
-      </div>
+  <footer>CLAUD'S SHOP<br>Privatna prodaja očuvanih predmeta • Sva prava pridržana</footer>
 
-      <div class="info-grid">
-        <div class="info-panel">
-          <h3>🏦 Podaci za m-Banking / Uplatnicu</h3>
-          <div class="data-row">
-            <span class="data-label">Primatelj</span>
-            <span class="data-value">Klaudija Birkić</span>
-          </div>
-          <div class="data-row">
-            <span class="data-label">IBAN</span>
-            <span class="data-value">HR6423600001300206618</span>
-          </div>
-          <div class="data-row">
-            <span class="data-label">Model</span>
-            <span class="data-value">HR00</span>
-          </div>
-          <div class="data-row">
-            <span class="data-label">Poziv na broj</span>
-            <span class="data-value">6829324089</span>
-          </div>
-          <div style="margin-top: 12px; display:flex; gap:8px; flex-wrap:wrap;">
-            <button class="copy-mini" type="button" onclick="copyText('HR6423600001300206618', this)">Kopiraj IBAN</button>
-            <button class="copy-mini" type="button" onclick="copyText('6829324089', this)">Kopiraj poziv</button>
-          </div>
-        </div>
-
-        <div class="info-panel">
-          <h3>⚡ Brza uplata putem Aircasha</h3>
-          <a class="aircash-link" href="https://aircash.eu" target="_blank" rel="noreferrer">https://aircash.eu</a>
-          <button class="btn-gold" type="button" onclick="window.open('https://aircash.eu', '_blank')">Plati putem Aircasha ↗</button>
-        </div>
-
-        <div class="info-panel" style="grid-column:1 / -1;">
-          <h3>📦 Načini i uvjeti dostave</h3>
-          <ul class="delivery-list">
-            <li>Tiskani paket: Slanje na odabrani kiosk Tiska diljem Hrvatske.</li>
-            <li>BoxNow paketomat: Brza isporuka na najbliži paketomat (0–24h).</li>
-            <li>Hrvatska pošta / GLS: Dostava izravno na kućnu adresu.</li>
-            <li>Osobno preuzimanje: Moguće po dogovoru uz plaćanje na licu mjesta.</li>
-            <li>Slanje paketa: Svi paketi se pažljivo pakiraju i šalju odmah nakon vidljive uplate.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div>CLAUD'S SHOP</div>
-    <div>Privatna prodaja očuvanih predmeta • Sva prava pridržana</div>
-    <button class="secret-admin-trigger" type="button" onclick="openAdminAuth()">🔒</button>
-  </footer>
-
-  <div id="detail-modal" class="modal-backdrop" aria-hidden="true">
+  <div id="detail-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="detail-title" aria-hidden="true">
     <div class="modal-card">
-      <button class="modal-close" type="button" onclick="closeDetailModal()">×</button>
-      <div class="modal-content">
-        <img id="detail-img" class="detail-image" src="" alt="" />
-        <div id="detail-cat" class="detail-cat"></div>
-        <h3 id="detail-title" class="detail-title"></h3>
-        <div id="detail-condition" class="detail-condition"></div>
-        <p id="detail-desc" class="detail-desc"></p>
-        <div id="detail-price" class="detail-price"></div>
-        <button id="detail-add-btn" class="btn-gold" type="button">+ Dodaj u košaricu</button>
-      </div>
+      <button class="modal-close" type="button" data-close="detail-modal" aria-label="Zatvori">×</button>
+      <img id="detail-image" class="detail-image" alt="">
+      <div id="detail-category" class="detail-category"></div>
+      <h2 id="detail-title"></h2>
+      <div id="detail-condition"></div>
+      <p id="detail-description" class="detail-description"></p>
+      <div id="detail-price" class="detail-price"></div>
+      <button id="detail-add" class="button-gold" type="button">Dodaj u košaricu</button>
     </div>
   </div>
 
-  <div id="cart-modal" class="modal-backdrop" aria-hidden="true">
+  <div id="cart-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="cart-title" aria-hidden="true">
     <div class="modal-card">
-      <button class="modal-close" type="button" onclick="closeCart()">×</button>
-      <div class="modal-content">
-        <h3>Vaša košarica</h3>
-        <div id="cart-items-list"></div>
-        <div style="margin-top:16px; font-weight:700; font-size:15px;">Ukupno za uplatu: <span id="cart-total">0 €</span></div>
-        <div style="margin-top:16px;">
-          <div style="margin-bottom:10px; font-weight:600;">Odaberi način plaćanja:</div>
-          <label class="radio-box"><input type="radio" name="cart-payment" value="Uplata na račun" checked /> Uplata na račun</label>
-          <label class="radio-box"><input type="radio" name="cart-payment" value="Aircash uplata" /> Aircash uplata</label>
-        </div>
-        <button class="btn-gold" type="button" onclick="checkoutWhatsApp()" style="width:100%; margin-top:16px;">Pošalji narudžbu na WhatsApp</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="admin-modal" class="modal-backdrop" aria-hidden="true">
-    <div class="modal-card">
-      <button class="modal-close" type="button" onclick="closeAdminModal()">×</button>
-      <div class="modal-content">
-        <h3>Admin Upravljanje</h3>
-        <p style="margin:0 0 16px; color:#d4d4d8;">Dodaj nove artikle ili ukloni prodane stvari.</p>
-
-        <div class="admin-form">
-          <label class="admin-label" for="admin-cat">Kategorija:</label>
-          <select id="admin-cat" class="admin-select">
-            <option value="Odjeća">Odjeća</option>
-            <option value="Obuća">Obuća</option>
-            <option value="Kućanske stvari">Kućanske stvari</option>
-            <option value="Alati">Alati</option>
-            <option value="Knjige">Knjige</option>
-            <option value="Antikviteti">Antikviteti</option>
-            <option value="Igračke">Igračke</option>
-            <option value="Stvari za djecu">Stvari za djecu</option>
-          </select>
-
-          <label class="admin-label" for="admin-title">Naziv proizvoda:</label>
-          <input id="admin-title" class="admin-input" type="text" />
-
-          <label class="admin-label" for="admin-condition">Stanje:</label>
-          <input id="admin-condition" class="admin-input" type="text" placeholder="npr. Kao novo" />
-
-          <label class="admin-label" for="admin-price">Cijena (€):</label>
-          <input id="admin-price" class="admin-input" type="number" step="0.01" />
-
-          <label class="admin-label" for="admin-desc">Opis predmeta:</label>
-          <textarea id="admin-desc" class="admin-textarea"></textarea>
-
-          <label class="admin-label" for="admin-file">Slika s mobitela (odaberi iz galerije):</label>
-          <input id="admin-file" class="admin-input" type="file" accept="image/*" />
-
-          <label class="admin-label" for="admin-img-url">Ili zalijepi link slike (opcionalno):</label>
-          <input id="admin-img-url" class="admin-input" type="text" />
-
-          <button class="admin-button" type="button" onclick="adminAddProduct()">Spremi proizvod</button>
-        </div>
-
-        <div style="margin-top:18px;">
-          <div style="font-weight:600; margin-bottom:10px;">Popis trenutnih proizvoda:</div>
-          <div id="admin-products-list"></div>
-        </div>
-      </div>
+      <button class="modal-close" type="button" data-close="cart-modal" aria-label="Zatvori">×</button>
+      <h2 id="cart-title">Vaša košarica</h2>
+      <div id="cart-items"></div>
+      <div class="modal-total">Ukupno za uplatu: <span id="cart-total">0 €</span></div>
+      <p style="margin:16px 0 8px;font-size:14px">Odaberi način plaćanja:</p>
+      <label class="radio-label"><input type="radio" name="payment" value="Uplata na račun" checked> Uplata na račun</label>
+      <label class="radio-label"><input type="radio" name="payment" value="Aircash uplata"> Aircash uplata</label>
+      <button id="checkout" class="button-gold" type="button" style="width:100%;margin-top:12px">Pošalji narudžbu na WhatsApp</button>
     </div>
   </div>
 
   <script>
-    const mojWhatsApp = "385955432154";
-    const adminLozinka = "klaudija2026";
+    'use strict';
+
+    // Artikli su ogledni primjeri. Za izmjene koje vide svi posjetitelji uredite ovaj popis.
+    const defaultProducts = [
+      { id: 1, category: 'Odjeća', title: 'Elegantan crni kaput (vel. M)', condition: 'Kao novo', price: 40, desc: 'Kvalitetan kroj, nošen svega par puta, bez ikakvih tragova korištenja.', img: 'https://images.unsplash.com/photo-1548126032-079a0fb0099d?auto=format&fit=crop&w=900&q=80' },
+      { id: 2, category: 'Obuća', title: 'Kožne gležnjače (br. 39)', condition: 'Odlično stanje', price: 35, desc: 'Prava brušena koža, vrlo udobne i očuvane, dolaze u originalnoj kutiji.', img: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=900&q=80' },
+      { id: 3, category: 'Kućanske stvari', title: 'Set porculanskih šalica za kavu', condition: 'Nekorišteno', price: 25, desc: 'Komplet od 6 šalica sa zlatnim rubom, nekorišteno, u ukrasnoj kutiji.', img: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=900&q=80' },
+      { id: 4, category: 'Alati', title: 'Akumulatorska bušilica s koferom', condition: 'Ispravno / Očuvano', price: 60, desc: 'Komplet s punjačem, dvije ispravne baterije i setom svrdala u čvrstom koferu.', img: 'https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=900&q=80' },
+      { id: 5, category: 'Knjige', title: 'Komplet klasičnih romana (4 knjige)', condition: 'Kao novo', price: 22, desc: 'Tvrdi uvez, očuvane stranice bez oštećenja, prodaje se u kompletu.', img: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=80' },
+      { id: 6, category: 'Antikviteti', title: 'Starinski mjedeni svijećnjak', condition: 'Vintage', price: 55, desc: 'Autentičan kolekcionarski komad iz sredine prošlog stoljeća, masivni mjed.', img: 'https://images.unsplash.com/photo-1578500494198-246f612d3b3d?auto=format&fit=crop&w=900&q=80' },
+      { id: 7, category: 'Igračke', title: 'Drveni edukativni set kocaka', condition: 'Kao novo', price: 15, desc: 'Sigurne boje na bazi vode, kompletno pakiranje bez nedostajućih dijelova.', img: 'https://images.unsplash.com/photo-1599623560574-39d485900c95?auto=format&fit=crop&w=900&q=80' },
+      { id: 8, category: 'Stvari za djecu', title: 'Sklopiva dječja kolica', condition: 'Očuvano', price: 50, desc: 'Lagana i praktična za putovanja, svježe oprana navlaka i potpuno ispravne kočnice.', img: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80' }
+    ];
 
     const categories = [
-      { name: "Sve", icon: "✨" },
-      { name: "Odjeća", icon: "👗" },
-      { name: "Obuća", icon: "👠" },
-      { name: "Kućanske stvari", icon: "🏠" },
-      { name: "Alati", icon: "🛠️" },
-      { name: "Knjige", icon: "📚" },
-      { name: "Antikviteti", icon: "🏺" },
-      { name: "Igračke", icon: "🧸" },
-      { name: "Stvari za djecu", icon: "🍼" }
+      { name: 'Sve', icon: '✨' }, { name: 'Odjeća', icon: '👗' }, { name: 'Obuća', icon: '👠' },
+      { name: 'Kućanske stvari', icon: '🏠' }, { name: 'Alati', icon: '🛠️' }, { name: 'Knjige', icon: '📚' },
+      { name: 'Antikviteti', icon: '🏺' }, { name: 'Igračke', icon: '🧸' }, { name: 'Stvari za djecu', icon: '🍼' }
     ];
-
-    const defaultProducts = [
-      { id: 1, category: "Odjeća", title: "Elegantan crni kaput (vel. M)", condition: "Kao novo", price: 40, desc: "Kvalitetan kroj, nošen svega par puta, bez ikakvih tragova korištenja.", img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80" },
-      { id: 2, category: "Obuća", title: "Kožne gležnjače (br. 39)", condition: "Odlično stanje", price: 35, desc: "Prava brušena koža, vrlo udobne i očuvane, dolaze u originalnoj kutiji.", img: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=900&q=80" },
-      { id: 3, category: "Kućanske stvari", title: "Set porculanskih šalica za kavu", condition: "Nekorišteno", price: 25, desc: "Komplet od 6 šalica sa zlatnim rubom, nekorišteno, u ukrasnoj kutiji.", img: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=900&q=80" },
-      { id: 4, category: "Alati", title: "Akumulatorska bušilica s koferom", condition: "Ispravno / Očuvano", price: 60, desc: "Komplet s punjačem, dvije ispravne baterije i setom svrdala u čvrstom koferu.", img: "https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=900&q=80" },
-      { id: 5, category: "Knjige", title: "Komplet klasičnih romana (4 knjige)", condition: "Kao novo", price: 22, desc: "Tvrdi uvez, očuvane stranice bez oštećenja, prodaje se u kompletu.", img: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=80" },
-      { id: 6, category: "Antikviteti", title: "Starinski mjedeni svijećnjak", condition: "Vintage", price: 55, desc: "Autentičan kolekcionarski komad iz sredine prošlog stoljeća, masivni mjed.", img: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=900&q=80" },
-      { id: 7, category: "Igračke", title: "Drveni edukativni set kocaka", condition: "Kao novo", price: 15, desc: "Sigurne boje na bazi vode, kompletno pakiranje bez nedostajućih dijelova.", img: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80" },
-      { id: 8, category: "Stvari za djecu", title: "Sklopiva dječja kolica", condition: "Očuvano", price: 50, desc: "Lagana i praktična za putovanja, svježe oprana navlaka i potpuno ispravne kočnice.", img: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=900&q=80" }
-    ];
-
-    let products = [];
-    try {
-      const saved = localStorage.getItem('clauds_shop_products');
-      products = saved ? JSON.parse(saved) : [...defaultProducts];
-    } catch (error) {
-      products = [...defaultProducts];
-    }
-
-    let activeCategory = "Sve";
+    const fallbackImage = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500"><rect width="100%" height="100%" fill="#171410"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#e5c365" font-family="Arial" font-size="28">Claud\'s shop</text></svg>');
+    const money = new Intl.NumberFormat('hr-HR', { maximumFractionDigits: 2 });
+    let activeCategory = 'Sve';
+    let products = loadProducts();
     let cart = [];
 
-    function saveProductsToLocal() {
+    function loadProducts() {
       try {
-        localStorage.setItem('clauds_shop_products', JSON.stringify(products));
+        const raw = localStorage.getItem('clauds_shop_products');
+        if (raw === null) return [...defaultProducts];
+        const parsed = JSON.parse(raw);
+        if (!Array.isArray(parsed)) return [...defaultProducts];
+        return parsed.filter(item => item && Number.isFinite(Number(item.id)) && typeof item.title === 'string')
+          .map(item => ({
+            id: Number(item.id),
+            category: categories.some(category => category.name === item.category) && item.category !== 'Sve' ? item.category : 'Odjeća',
+            title: item.title.slice(0, 120),
+            condition: typeof item.condition === 'string' ? item.condition.slice(0, 80) : 'Očuvano',
+            price: Number.isFinite(Number(item.price)) && Number(item.price) >= 0 ? Number(item.price) : 0,
+            desc: typeof item.desc === 'string' ? item.desc.slice(0, 1000) : '',
+            img: typeof item.img === 'string' ? item.img : ''
+          }));
       } catch (error) {
-        alert('Memorija preglednika je puna zbog velikih slika. Koristi linkove slika s postimages.org za više artikala.');
+        return [...defaultProducts];
       }
+    }
+
+    function escapeHTML(value) {
+      return String(value).replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
+    }
+
+    function validImageSource(source) {
+      if (typeof source !== 'string') return fallbackImage;
+      if (/^https:\/\//i.test(source) || /^data:image\/(?:png|jpeg|webp|gif);base64,/i.test(source)) return source;
+      return fallbackImage;
+    }
+
+    function formatPrice(value) {
+      return money.format(Number(value) || 0) + ' €';
     }
 
     function renderCategories() {
-      const grid = document.getElementById('categories-grid');
-      grid.innerHTML = categories.map(cat => `
-        <div class="cat-box ${activeCategory === cat.name ? 'active' : ''}" onclick="selectCategory('${cat.name}')">
-          <span class="cat-icon">${cat.icon}</span>
-          <span class="cat-name">${cat.name}</span>
-        </div>
-      `).join('');
-    }
-
-    function selectCategory(catName) {
-      activeCategory = catName;
-      renderCategories();
-      renderProducts();
+      const container = document.getElementById('categories-grid');
+      container.innerHTML = categories.map(category => `
+        <button class="category-button${activeCategory === category.name ? ' active' : ''}" type="button" data-category="${escapeHTML(category.name)}" aria-pressed="${activeCategory === category.name}">
+          <span class="category-icon" aria-hidden="true">${category.icon}</span><span>${escapeHTML(category.name)}</span>
+        </button>`).join('');
     }
 
     function renderProducts() {
-      const grid = document.getElementById('products-grid');
-      const filtered = activeCategory === 'Sve' ? products : products.filter(p => p.category === activeCategory);
-
-      if (filtered.length === 0) {
-        grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:#a1a1aa; padding:30px;">Trenutno nema predmeta u ovoj kategoriji.</p>';
+      const container = document.getElementById('products-grid');
+      const visibleProducts = activeCategory === 'Sve' ? products : products.filter(product => product.category === activeCategory);
+      if (!visibleProducts.length) {
+        container.innerHTML = '<p class="empty-state" style="grid-column:1/-1">Trenutno nema proizvoda u ovoj kategoriji.</p>';
         return;
       }
-
-      grid.innerHTML = filtered.map(product => `
+      container.innerHTML = visibleProducts.map(product => `
         <article class="product-card">
-          <div class="product-img-wrap" onclick="openDetailModal(${product.id})">
-            <img src="${product.img}" alt="${product.title}" />
-            <span class="badge-condition">${product.condition}</span>
-          </div>
-          <div class="product-body">
-            <div class="product-cat">${product.category}</div>
-            <div class="product-title">${product.title}</div>
-            <div class="product-desc">${product.desc}</div>
+          <img class="product-image" data-detail-id="${product.id}" src="${escapeHTML(validImageSource(product.img))}" alt="${escapeHTML(product.title)}" loading="lazy">
+          <div class="product-content">
+            <div class="product-category">${escapeHTML(product.category)}</div>
+            <h2 class="product-title">${escapeHTML(product.title)}</h2>
+            <div class="product-condition">${escapeHTML(product.condition)}</div>
+            <p class="product-description">${escapeHTML(product.desc)}</p>
           </div>
           <div class="product-footer">
-            <div class="product-price">${product.price} €</div>
-            <div class="card-actions">
-              <button class="btn-outline" type="button" onclick="openDetailModal(${product.id})">Detalji</button>
-              <button class="btn-gold" type="button" onclick="addToCart(${product.id})">+ Dodaj</button>
+            <span class="product-price">${formatPrice(product.price)}</span>
+            <div class="actions">
+              <button class="button-outline" type="button" data-detail-id="${product.id}">Detalji</button>
+              <button class="button-gold" type="button" data-add-id="${product.id}">+ Dodaj</button>
             </div>
           </div>
-        </article>
-      `).join('');
+        </article>`).join('');
+      container.querySelectorAll('.product-image').forEach(image => image.addEventListener('error', () => { image.src = fallbackImage; }, { once: true }));
     }
 
-    function openDetailModal(id) {
-      const product = products.find(item => item.id === id);
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      const closeButton = modal.querySelector('.modal-close');
+      if (closeButton) closeButton.focus();
+    }
+
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+
+    function showDetails(id) {
+      const product = products.find(item => item.id === Number(id));
       if (!product) return;
-
-      document.getElementById('detail-img').src = product.img;
-      document.getElementById('detail-img').alt = product.title;
-      document.getElementById('detail-cat').innerText = product.category;
-      document.getElementById('detail-title').innerText = product.title;
-      document.getElementById('detail-condition').innerText = 'Stanje: ' + product.condition;
-      document.getElementById('detail-desc').innerText = product.desc;
-      document.getElementById('detail-price').innerText = product.price + ' €';
-
-      const addBtn = document.getElementById('detail-add-btn');
-      addBtn.onclick = function () {
-        addToCart(product.id);
-        closeDetailModal();
-      };
-
-      document.getElementById('detail-modal').classList.add('open');
-      document.getElementById('detail-modal').setAttribute('aria-hidden', 'false');
-    }
-
-    function closeDetailModal() {
-      document.getElementById('detail-modal').classList.remove('open');
-      document.getElementById('detail-modal').setAttribute('aria-hidden', 'true');
+      const image = document.getElementById('detail-image');
+      image.src = validImageSource(product.img);
+      image.alt = product.title;
+      image.onerror = () => { image.src = fallbackImage; };
+      document.getElementById('detail-category').textContent = product.category;
+      document.getElementById('detail-title').textContent = product.title;
+      document.getElementById('detail-condition').textContent = 'Stanje: ' + product.condition;
+      document.getElementById('detail-description').textContent = product.desc;
+      document.getElementById('detail-price').textContent = formatPrice(product.price);
+      document.getElementById('detail-add').dataset.addId = String(product.id);
+      openModal('detail-modal');
     }
 
     function addToCart(id) {
-      const product = products.find(item => item.id === id);
+      const product = products.find(item => item.id === Number(id));
       if (!product) return;
-      if (cart.some(item => item.id === id)) {
-        alert('Ovaj unikatni predmet je već u vašoj košarici!');
+      if (cart.some(item => item.id === product.id)) {
+        alert('Ovaj predmet je već u košarici.');
         return;
       }
       cart.push(product);
-      updateCartUI();
+      updateCart();
     }
 
     function removeFromCart(index) {
       cart.splice(index, 1);
-      updateCartUI();
+      updateCart();
     }
 
-    function updateCartUI() {
-      const cartCount = document.getElementById('cart-count');
-      const list = document.getElementById('cart-items-list');
-      const total = document.getElementById('cart-total');
-
-      cartCount.innerText = cart.length;
-
-      if (cart.length === 0) {
+    function updateCart() {
+      document.getElementById('cart-count').textContent = String(cart.length);
+      const list = document.getElementById('cart-items');
+      if (!cart.length) {
         list.innerHTML = '<p class="empty-state">Vaša košarica je trenutno prazna.</p>';
-        total.innerText = '0 €';
-        return;
+      } else {
+        list.innerHTML = cart.map((item, index) => `
+          <div class="cart-item"><div><strong>${escapeHTML(item.title)}</strong><br><span style="color:#e5c365;font-size:13px">${formatPrice(item.price)}</span></div>
+          <button class="remove-button" type="button" data-remove-index="${index}">Ukloni</button></div>`).join('');
       }
-
-      list.innerHTML = cart.map((item, index) => `
-        <div class="cart-item-row">
-          <div>
-            <div style="font-size:14px; font-weight:600; color:#fff;">${item.title}</div>
-            <div style="font-size:12px; color:#e5c365;">${item.price} €</div>
-          </div>
-          <button class="remove-btn" type="button" onclick="removeFromCart(${index})">Ukloni</button>
-        </div>
-      `).join('');
-
-      const sum = cart.reduce((acc, item) => acc + Number(item.price), 0);
-      total.innerText = sum + ' €';
+      const total = cart.reduce((sum, item) => sum + Number(item.price), 0);
+      document.getElementById('cart-total').textContent = formatPrice(total);
     }
 
-    function openCart() {
-      updateCartUI();
-      document.getElementById('cart-modal').classList.add('open');
-      document.getElementById('cart-modal').setAttribute('aria-hidden', 'false');
+    async function copyText(value, button) {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(value);
+        } else {
+          const temporary = document.createElement('textarea');
+          temporary.value = value;
+          temporary.style.position = 'fixed';
+          temporary.style.opacity = '0';
+          document.body.appendChild(temporary);
+          temporary.select();
+          const copied = document.execCommand('copy');
+          temporary.remove();
+          if (!copied) throw new Error('Kopiranje nije uspjelo');
+        }
+        const original = button.textContent;
+        button.textContent = 'Kopirano!';
+        setTimeout(() => { button.textContent = original; }, 1400);
+      } catch (error) {
+        alert('Kopiranje nije uspjelo. Možete ručno označiti i kopirati podatak.');
+      }
     }
 
-    function closeCart() {
-      document.getElementById('cart-modal').classList.remove('open');
-      document.getElementById('cart-modal').setAttribute('aria-hidden', 'true');
-    }
-
-    function checkoutWhatsApp() {
-      if (cart.length === 0) {
+    function checkout() {
+      if (!cart.length) {
         alert('Dodajte barem jedan proizvod u košaricu prije narudžbe.');
         return;
       }
-
-      const paymentMethod = document.querySelector('input[name="cart-payment"]:checked').value;
+      // WhatsApp broj treba biti u međunarodnom formatu bez +, razmaka i početne nule.
+      const whatsappNumber = '385955432154';
+      const payment = document.querySelector('input[name="payment"]:checked');
+      const paymentMethod = payment ? payment.value : 'Uplata na račun';
       const total = cart.reduce((sum, item) => sum + Number(item.price), 0);
-      const itemsText = cart.map(item => `- ${item.title} (${item.price} €)`).join('\n');
-
-      let paymentDetails = '';
-      if (paymentMethod.includes('Aircash')) {
-        paymentDetails = 'Aircash link za uplatu:\nhttps://aircash.eu';
-      } else {
-        paymentDetails = 'Podaci za uplatu:\nPrimatelj: Klaudija Birkić\nIBAN: HR6423600001300206618\nModel: HR00 | Poziv na broj: 6829324089';
-      }
-
-      const message = encodeURIComponent(`Pozdrav Klaudija! Želim naručiti sljedeće iz Claud's shopa:\n\n${itemsText}\n\nUKUPNO: ${total} €\nNačin plaćanja: ${paymentMethod}\n\n${paymentDetails}\n\nJavljam se za dogovor oko dostave.`);
-      window.open(`https://wa.me/${mojWhatsApp}?text=${message}`, '_blank');
-      closeCart();
+      const itemLines = cart.map(item => `- ${item.title} (${formatPrice(item.price)})`).join('\n');
+      const paymentInfo = paymentMethod.includes('Aircash')
+        ? 'Aircash: https://aircash.eu'
+        : 'Primatelj: Klaudija Birkić\nIBAN: HR6423600001300206618\nModel: HR00 | Poziv na broj: 6829324089';
+      const message = `Pozdrav Klaudija! Želim naručiti iz Claud's shopa:\n\n${itemLines}\n\nUKUPNO: ${formatPrice(total)}\nNačin plaćanja: ${paymentMethod}\n\n${paymentInfo}\n\nJavljam se za dogovor oko dostave.`;
+      const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank', 'noopener,noreferrer');
     }
 
-    function copyText(text, button) {
-      navigator.clipboard.writeText(text).then(() => {
-        const original = button.innerText;
-        button.innerText = 'Kopirano!';
-        setTimeout(() => {
-          button.innerText = original;
-        }, 1500);
-      }).catch(() => {
-        alert('Kopiranje nije dostupno u ovom pregledniku.');
-      });
-    }
-
-    function openAdminAuth() {
-      const unos = prompt('Unesi Admin lozinku:');
-      if (unos === adminLozinka) {
-        renderAdminList();
-        document.getElementById('admin-modal').classList.add('open');
-        document.getElementById('admin-modal').setAttribute('aria-hidden', 'false');
-      } else if (unos !== null) {
-        alert('Pogrešna lozinka.');
-      }
-    }
-
-    function closeAdminModal() {
-      document.getElementById('admin-modal').classList.remove('open');
-      document.getElementById('admin-modal').setAttribute('aria-hidden', 'true');
-    }
-
-    function renderAdminList() {
-      const list = document.getElementById('admin-products-list');
-      list.innerHTML = products.map((product, index) => `
-        <div class="cart-item-row">
-          <div>
-            <div style="font-size:13px; font-weight:600; color:#fff;">${product.title}</div>
-            <div style="font-size:11px; color:#d4af37;">${product.category}</div>
-          </div>
-          <button class="remove-btn" type="button" onclick="adminDeleteProduct(${index})">Obriši</button>
-        </div>
-      `).join('');
-    }
-
-    function compressImage(file, callback) {
-      const reader = new FileReader();
-      reader.onload = function (event) {
-        const img = new Image();
-        img.onload = function () {
-          const canvas = document.createElement('canvas');
-          const maxWidth = 700;
-          const scale = Math.min(1, maxWidth / img.width);
-          canvas.width = img.width * scale;
-          canvas.height = img.height * scale;
-
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-          callback(canvas.toDataURL('image/jpeg', 0.75));
-        };
-        img.src = event.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
-
-    function adminAddProduct() {
-      const cat = document.getElementById('admin-cat').value;
-      const title = document.getElementById('admin-title').value.trim();
-      const condition = document.getElementById('admin-condition').value.trim() || 'Očuvano';
-      const price = parseFloat(document.getElementById('admin-price').value);
-      const desc = document.getElementById('admin-desc').value.trim() || 'Očuvan predmet iz privatne kolekcije.';
-      const urlInput = document.getElementById('admin-img-url').value.trim();
-      const fileInput = document.getElementById('admin-file');
-
-      if (!title || Number.isNaN(price)) {
-        alert('Upiši barem naziv proizvoda i cijenu.');
-        return;
-      }
-
-      const finalizeAdd = (imageSrc) => {
-        const newProd = {
-          id: Date.now(),
-          category: cat,
-          title,
-          condition,
-          price,
-          desc,
-          img: imageSrc || 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80'
-        };
-
-        products.unshift(newProd);
-        saveProductsToLocal();
-        renderProducts();
-        renderAdminList();
-
-        document.getElementById('admin-title').value = '';
-        document.getElementById('admin-condition').value = '';
-        document.getElementById('admin-price').value = '';
-        document.getElementById('admin-desc').value = '';
-        document.getElementById('admin-img-url').value = '';
-        fileInput.value = '';
-
-        alert('Proizvod je uspješno dodan!');
-      };
-
-      if (fileInput.files && fileInput.files[0]) {
-        compressImage(fileInput.files[0], finalizeAdd);
-      } else {
-        finalizeAdd(urlInput);
-      }
-    }
-
-    function adminDeleteProduct(index) {
-      if (confirm('Jesi li sigurna da želiš obrisati ovaj proizvod?')) {
-        products.splice(index, 1);
-        saveProductsToLocal();
-        renderProducts();
-        renderAdminList();
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('categories-grid').addEventListener('click', event => {
+      const button = event.target.closest('[data-category]');
+      if (!button) return;
+      activeCategory = button.dataset.category;
       renderCategories();
       renderProducts();
-      updateCartUI();
-      renderAdminList();
     });
+
+    document.getElementById('products-grid').addEventListener('click', event => {
+      const detailButton = event.target.closest('[data-detail-id]');
+      const addButton = event.target.closest('[data-add-id]');
+      if (detailButton) showDetails(detailButton.dataset.detailId);
+      if (addButton) addToCart(addButton.dataset.addId);
+    });
+
+    document.getElementById('detail-add').addEventListener('click', event => {
+      addToCart(event.currentTarget.dataset.addId);
+      closeModal('detail-modal');
+    });
+    document.getElementById('open-cart').addEventListener('click', () => { updateCart(); openModal('cart-modal'); });
+    document.getElementById('checkout').addEventListener('click', checkout);
+    document.getElementById('cart-items').addEventListener('click', event => {
+      const button = event.target.closest('[data-remove-index]');
+      if (button) removeFromCart(Number(button.dataset.removeIndex));
+    });
+    document.querySelectorAll('[data-close]').forEach(button => button.addEventListener('click', () => closeModal(button.dataset.close)));
+    document.querySelectorAll('[data-copy]').forEach(button => button.addEventListener('click', () => copyText(button.dataset.copy, button)));
+    document.querySelectorAll('.modal-backdrop').forEach(modal => modal.addEventListener('click', event => {
+      if (event.target === modal) closeModal(modal.id);
+    }));
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') document.querySelectorAll('.modal-backdrop.open').forEach(modal => closeModal(modal.id));
+    });
+
+    renderCategories();
+    renderProducts();
+    updateCart();
   </script>
 </body>
 </html>
