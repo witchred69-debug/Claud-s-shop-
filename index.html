@@ -11,15 +11,14 @@
   <style>
     :root{color-scheme:dark;--bg:#09090b;--panel:#171410;--gold:#d4af37;--gold-light:#fcf6ba;--text:#f4f4f5;--muted:#a1a1aa;--line:rgba(212,175,55,.35)}
     *{box-sizing:border-box}
-    body{margin:0;min-height:100vh;background-color:var(--bg);background-image:radial-gradient(rgba(212,175,55,.18) 1px,transparent 0),linear-gradient(135deg,#09090b,#171410 50%,#09090b);font-family:'Plus Jakarta Sans',sans-serif;color:var(--text)}
-    a,button,input,select{font:inherit}
+    body{margin:0;min-height:100vh;background-color:var(--bg);background-image:radial-gradient(rgba(212,175,55,.18) 1px,transparent 0),linear-gradient(135deg,#09090b,#171410 50%,#09090b);background-size:32px 32px,100% 100%;color:var(--text);font-family:'Plus Jakarta Sans',Arial,sans-serif}
+    button,a{font:inherit}
     button{cursor:pointer}
-    .site-header{position:sticky;top:0;z-index:50;background:rgba(9,9,11,.96);border-bottom:1px solid var(--line);padding:14px 16px}
+    .site-header{position:sticky;top:0;z-index:5;background:rgba(9,9,11,.96);border-bottom:1px solid var(--line);padding:14px 16px}
     .header-inner{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
     .logo{color:var(--gold-light);font-family:Cinzel,Georgia,serif;font-weight:700;letter-spacing:1px;text-decoration:none}
-    .header-actions{display:flex;align-items:center;gap:10px}
-    .cart-button,.button-gold,.button-outline,.copy-button,.admin-link{border-radius:10px;font-weight:700}
-    .cart-button,.admin-link{border:1px solid var(--line);background:#171410;color:var(--gold-light);padding:9px 14px;border-radius:999px;text-decoration:none}
+    .cart-button,.button-gold,.button-outline,.copy-button{border-radius:10px;font-weight:700}
+    .cart-button{border:1px solid var(--line);background:#171410;color:var(--gold-light);padding:9px 14px;border-radius:999px}
     .cart-count{display:inline-block;margin-left:6px;border-radius:99px;background:var(--gold-light);color:#09090b;padding:2px 8px}
     .hero{max-width:900px;margin:auto;padding:36px 16px 18px;text-align:center}
     .eyebrow{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:5px 14px;color:var(--gold-light);font-size:11px;letter-spacing:2px;text-transform:uppercase}
@@ -29,7 +28,7 @@
     .categories,.products,.info{max-width:1100px;margin:20px auto;padding:0 16px}
     .section-label{text-align:center;color:var(--muted);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px}
     .category-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-    .category-button{min-height:72px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(145deg,#1d1914,#100e0b);color:var(--text);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;transition:.2s ease;padding:12px}
+    .category-button{min-height:72px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(145deg,#1d1914,#100e0b);color:var(--text);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:10px 5px;font-size:12px}
     .category-button.active{background:linear-gradient(135deg,#bf953f,#e5c365,#aa771c);color:#09090b;border-color:var(--gold-light);font-weight:700}
     .category-icon{font-size:21px}
     .product-grid{display:grid;grid-template-columns:1fr;gap:18px}
@@ -54,16 +53,15 @@
     .info-panel h3{margin:0 0 10px;color:#e5c365;font-size:15px}
     .data-row{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:13px}
     .data-row:last-of-type{border-bottom:0}
-    .data-label{color:var(--muted)}
-    .data-value{text-align:right;font-weight:600;overflow-wrap:anywhere}
+    .data-label{color:var(--muted)}.data-value{text-align:right;font-weight:600;overflow-wrap:anywhere}
     .copy-button{margin:8px 6px 0 0;border:1px solid rgba(212,175,55,.45);background:rgba(212,175,55,.18);color:var(--gold-light)}
     .aircash-link{display:block;color:var(--gold-light);margin:10px 0;font-size:13px}
     .delivery-list{margin:0;padding:0;list-style:none;color:#d4d4d8;font-size:13px;line-height:1.8}
     .delivery-list li::before{content:'✦ ';color:var(--gold)}
     footer{text-align:center;border-top:1px solid rgba(212,175,55,.2);background:#050506;color:#71717a;padding:20px 16px;font-size:12px;margin-top:30px}
-    .modal-backdrop{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.88)}
+    .modal-backdrop{position:fixed;inset:0;z-index:10;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.88)}
     .modal-backdrop.open{display:flex}
-    .modal-card{position:relative;width:min(100%,480px);max-height:90vh;overflow:auto;padding:22px 18px;border:1px solid rgba(212,175,55,.55);border-radius:18px;background:linear-gradient(160deg,#1c1813,#0d0b0a);box-shadow:0 20px 50px rgba(0,0,0,.6)}
+    .modal-card{position:relative;width:min(100%,480px);max-height:90vh;overflow:auto;padding:22px 18px;border:1px solid rgba(212,175,55,.55);border-radius:18px;background:linear-gradient(160deg,#1d1914,#0f0d0b)}
     .modal-close{position:absolute;top:8px;right:12px;border:0;background:transparent;color:var(--muted);font-size:30px;line-height:1}
     .modal-card h2{font-size:22px;margin:0 34px 14px 0}
     .detail-image{width:100%;height:250px;object-fit:cover;border-radius:12px;margin-bottom:12px;background:#14120f}
@@ -76,27 +74,24 @@
     .radio-label input{accent-color:var(--gold)}
     .empty-state{text-align:center;color:var(--muted);padding:18px 0;font-size:13px}
     .modal-total{font-weight:700;margin-top:14px}
-    @media(min-width:640px){.category-grid{grid-template-columns:repeat(5,minmax(0,1fr))}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.info-grid{grid-template-columns:1fr 1fr}}
+    @media(min-width:640px){.category-grid{grid-template-columns:repeat(5,minmax(0,1fr))}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.info-grid{grid-template-columns:1fr 1fr}.delivery-panel{grid-column:1/-1}}
     @media(min-width:960px){.product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-    @media(max-width:500px){.product-footer{align-items:flex-start;flex-direction:column}.actions{width:100%}.actions button{flex:1}.logo{font-size:17px}.header-actions{gap:8px}.admin-link,.cart-button{padding:8px 10px}} 
+    @media(max-width:500px){.product-footer{align-items:flex-start;flex-direction:column}.actions{width:100%}.actions button{flex:1}.logo{font-size:17px}}
   </style>
 </head>
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <a class="logo" href="#top" id="site-title">CLAUD'S SHOP</a>
-      <div class="header-actions">
-        <a class="admin-link" href="admin.html" type="button">Admin</a>
-        <button id="open-cart" class="cart-button" type="button" aria-label="Otvori košaricu">🛍️ Košarica <span id="cart-count" class="cart-count">0</span></button>
-      </div>
+      <a class="logo" href="#top">CLAUD'S SHOP</a>
+      <button id="open-cart" class="cart-button" type="button" aria-label="Otvori košaricu">🛍️ Košarica <span id="cart-count" class="cart-count">0</span></button>
     </div>
   </header>
 
   <main id="top">
     <section class="hero">
-      <span class="eyebrow" id="eyebrow-text">Privatna kolekcija</span>
-      <h1 id="hero-title">Claud's shop</h1>
-      <p id="hero-text">Odabrani komadi iz privatne ponude. Odaberite kategoriju, pregledajte detalje i dodajte željene artikle u košaricu.</p>
+      <span class="eyebrow">Privatna kolekcija</span>
+      <h1>Claud's shop</h1>
+      <p>Odabrani komadi iz privatne ponude. Odaberite kategoriju, pregledajte detalje i dodajte željene artikle u košaricu.</p>
     </section>
 
     <section class="categories" aria-label="Kategorije proizvoda">
@@ -115,16 +110,16 @@
         <div class="info-grid">
           <div class="info-panel">
             <h3>🏦 Podaci za uplatu</h3>
-            <div class="data-row"><span class="data-label">Primatelj</span><span class="data-value" id="bank-name">Klaudija Birkić</span></div>
-            <div class="data-row"><span class="data-label">IBAN</span><span class="data-value" id="bank-iban">HR6423600001300206618</span></div>
-            <div class="data-row"><span class="data-label">Model</span><span class="data-value" id="bank-model">HR00</span></div>
-            <div class="data-row"><span class="data-label">Poziv na broj</span><span class="data-value" id="bank-reference">6829324089</span></div>
+            <div class="data-row"><span class="data-label">Primatelj</span><span class="data-value">Klaudija Birkić</span></div>
+            <div class="data-row"><span class="data-label">IBAN</span><span class="data-value">HR6423600001300206618</span></div>
+            <div class="data-row"><span class="data-label">Model</span><span class="data-value">HR00</span></div>
+            <div class="data-row"><span class="data-label">Poziv na broj</span><span class="data-value">6829324089</span></div>
             <button class="copy-button" type="button" data-copy="HR6423600001300206618">Kopiraj IBAN</button>
             <button class="copy-button" type="button" data-copy="6829324089">Kopiraj poziv na broj</button>
           </div>
           <div class="info-panel">
-            <h3>⚡ Online plaćanje</h3>
-            <a id="online-payment-link" class="aircash-link" href="https://aircash.eu" target="_blank" rel="noopener noreferrer">Otvori online plaćanje ↗</a>
+            <h3>⚡ Aircash</h3>
+            <a class="aircash-link" href="https://aircash.eu" target="_blank" rel="noopener noreferrer">Otvori Aircash ↗</a>
           </div>
           <div class="info-panel delivery-panel">
             <h3>📦 Načini i uvjeti dostave</h3>
@@ -165,88 +160,46 @@
       <p style="margin:16px 0 8px;font-size:14px">Odaberi način plaćanja:</p>
       <label class="radio-label"><input type="radio" name="payment" value="Uplata na račun" checked> Uplata na račun</label>
       <label class="radio-label"><input type="radio" name="payment" value="Aircash uplata"> Aircash uplata</label>
-      <label class="radio-label"><input type="radio" name="payment" value="Online plaćanje"> Online plaćanje</label>
-      <button id="checkout" class="button-gold" type="button" style="width:100%;margin-top:12px">Pošalji narudžbu</button>
+      <button id="checkout" class="button-gold" type="button" style="width:100%;margin-top:12px">Pošalji narudžbu na WhatsApp</button>
     </div>
   </div>
 
   <script>
     'use strict';
 
-    const STORAGE_KEYS = {
-      products: 'clauds_shop_products',
-      settings: 'clauds_shop_settings',
-      orders: 'clauds_shop_orders'
-    };
-
-    const defaultCategories = [
-      { name: 'Sve', icon: '✨' },
-      { name: 'Odjeća', icon: '👗' },
-      { name: 'Obuća', icon: '👠' },
-      { name: 'Kućanske stvari', icon: '🏠' },
-      { name: 'Alati', icon: '🛠️' },
-      { name: 'Knjige', icon: '📚' },
-      { name: 'Antikviteti', icon: '🏺' },
-      { name: 'Igračke', icon: '🧸' },
-      { name: 'Stvari za djecu', icon: '🍼' }
-    ];
-
-    const defaultSettings = {
-      shopName: 'Claud\'s Shop',
-      eyebrow: 'Privatna kolekcija',
-      heroTitle: 'Claud\'s shop',
-      heroText: 'Odabrani komadi iz privatne ponude. Odaberite kategoriju, pregledajte detalje i dodajte željene artikle u košaricu.',
-      bankName: 'Klaudija Birkić',
-      bankIban: 'HR6423600001300206618',
-      bankModel: 'HR00',
-      bankReference: '6829324089',
-      onlinePaymentUrl: 'https://aircash.eu',
-      whatsappNumber: '385955432154'
-    };
-
+    // Artikli su ogledni primjeri. Za izmjene koje vide svi posjetitelji uredite ovaj popis.
     const defaultProducts = [
-      { id: 1, category: 'Odjeća', title: 'Elegantan crni kaput (vel. M)', condition: 'Kao novo', price: 40, desc: 'Kvalitetan kroj, nošen svega par puta, bez ikakvih tragova korištenja.', img: '' },
-      { id: 2, category: 'Obuća', title: 'Kožne gležnjače (br. 39)', condition: 'Odlično stanje', price: 35, desc: 'Prava brušena koža, vrlo udobne i očuvane, dolaze u originalnoj kutiji.', img: '' },
-      { id: 3, category: 'Kućanske stvari', title: 'Set porculanskih šalica za kavu', condition: 'Nekorišteno', price: 25, desc: 'Komplet od 6 šalica sa zlatnim rubom, nekorišteno, u ukrasnoj kutiji.', img: '' },
-      { id: 4, category: 'Alati', title: 'Akumulatorska bušilica s koferom', condition: 'Ispravno / Očuvano', price: 60, desc: 'Komplet s punjačem, dvije ispravne baterije i setom svrdala u čvrstom kovinskom koferu.', img: '' },
-      { id: 5, category: 'Knjige', title: 'Komplet klasičnih romana (4 knjige)', condition: 'Kao novo', price: 22, desc: 'Tvrdi uvez, očuvane stranice bez oštećenja, prodaje se u kompletu.', img: '' },
-      { id: 6, category: 'Antikviteti', title: 'Starinski mjedeni svijećnjak', condition: 'Vintage', price: 55, desc: 'Autentičan kolekcionarski komad iz sredine prošlog stoljeća, masivni mjed sa elegantnim detaljima.', img: '' },
-      { id: 7, category: 'Igračke', title: 'Drveni edukativni set kocaka', condition: 'Kao novo', price: 15, desc: 'Sigurne boje na bazi vode, kompletno pakiranje bez nedostajućih dijelova.', img: '' },
-      { id: 8, category: 'Stvari za djecu', title: 'Sklopiva dječja kolica', condition: 'Očuvano', price: 50, desc: 'Lagana i praktična za putovanja, svježe oprana navlaka i potpuno ispravne konstrukcije.', img: '' }
+      { id: 1, category: 'Odjeća', title: 'Elegantan crni kaput (vel. M)', condition: 'Kao novo', price: 40, desc: 'Kvalitetan kroj, nošen svega par puta, bez ikakvih tragova korištenja.', img: 'https://images.unsplash.com/photo-1548126032-079a0fb0099d?auto=format&fit=crop&w=900&q=80' },
+      { id: 2, category: 'Obuća', title: 'Kožne gležnjače (br. 39)', condition: 'Odlično stanje', price: 35, desc: 'Prava brušena koža, vrlo udobne i očuvane, dolaze u originalnoj kutiji.', img: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=900&q=80' },
+      { id: 3, category: 'Kućanske stvari', title: 'Set porculanskih šalica za kavu', condition: 'Nekorišteno', price: 25, desc: 'Komplet od 6 šalica sa zlatnim rubom, nekorišteno, u ukrasnoj kutiji.', img: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=900&q=80' },
+      { id: 4, category: 'Alati', title: 'Akumulatorska bušilica s koferom', condition: 'Ispravno / Očuvano', price: 60, desc: 'Komplet s punjačem, dvije ispravne baterije i setom svrdala u čvrstom koferu.', img: 'https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=900&q=80' },
+      { id: 5, category: 'Knjige', title: 'Komplet klasičnih romana (4 knjige)', condition: 'Kao novo', price: 22, desc: 'Tvrdi uvez, očuvane stranice bez oštećenja, prodaje se u kompletu.', img: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=80' },
+      { id: 6, category: 'Antikviteti', title: 'Starinski mjedeni svijećnjak', condition: 'Vintage', price: 55, desc: 'Autentičan kolekcionarski komad iz sredine prošlog stoljeća, masivni mjed.', img: 'https://images.unsplash.com/photo-1578500494198-246f612d3b3d?auto=format&fit=crop&w=900&q=80' },
+      { id: 7, category: 'Igračke', title: 'Drveni edukativni set kocaka', condition: 'Kao novo', price: 15, desc: 'Sigurne boje na bazi vode, kompletno pakiranje bez nedostajućih dijelova.', img: 'https://images.unsplash.com/photo-1599623560574-39d485900c95?auto=format&fit=crop&w=900&q=80' },
+      { id: 8, category: 'Stvari za djecu', title: 'Sklopiva dječja kolica', condition: 'Očuvano', price: 50, desc: 'Lagana i praktična za putovanja, svježe oprana navlaka i potpuno ispravne kočnice.', img: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80' }
     ];
 
-    const fallbackImage = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500"><rect width="100%" height="100%" fill="#171410"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#d4af37" font-family="Arial" font-size="28">Claud\'s Shop</text></svg>');
+    const categories = [
+      { name: 'Sve', icon: '✨' }, { name: 'Odjeća', icon: '👗' }, { name: 'Obuća', icon: '👠' },
+      { name: 'Kućanske stvari', icon: '🏠' }, { name: 'Alati', icon: '🛠️' }, { name: 'Knjige', icon: '📚' },
+      { name: 'Antikviteti', icon: '🏺' }, { name: 'Igračke', icon: '🧸' }, { name: 'Stvari za djecu', icon: '🍼' }
+    ];
+    const fallbackImage = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500"><rect width="100%" height="100%" fill="#171410"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#e5c365" font-family="Arial" font-size="28">Claud\'s shop</text></svg>');
     const money = new Intl.NumberFormat('hr-HR', { maximumFractionDigits: 2 });
     let activeCategory = 'Sve';
     let products = loadProducts();
     let cart = [];
-    let settings = loadSettings();
-
-    function loadSettings() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEYS.settings);
-        if (!raw) return { ...defaultSettings };
-        const parsed = JSON.parse(raw);
-        return { ...defaultSettings, ...parsed };
-      } catch (error) {
-        return { ...defaultSettings };
-      }
-    }
-
-    function saveSettings() {
-      localStorage.setItem(STORAGE_KEYS.settings, JSON.stringify(settings));
-    }
 
     function loadProducts() {
       try {
-        const raw = localStorage.getItem(STORAGE_KEYS.products);
+        const raw = localStorage.getItem('clauds_shop_products');
         if (raw === null) return [...defaultProducts];
         const parsed = JSON.parse(raw);
         if (!Array.isArray(parsed)) return [...defaultProducts];
         return parsed.filter(item => item && Number.isFinite(Number(item.id)) && typeof item.title === 'string')
           .map(item => ({
             id: Number(item.id),
-            category: defaultCategories.some(category => category.name === item.category) && item.category !== 'Sve' ? item.category : 'Odjeća',
+            category: categories.some(category => category.name === item.category) && item.category !== 'Sve' ? item.category : 'Odjeća',
             title: item.title.slice(0, 120),
             condition: typeof item.condition === 'string' ? item.condition.slice(0, 80) : 'Očuvano',
             price: Number.isFinite(Number(item.price)) && Number(item.price) >= 0 ? Number(item.price) : 0,
@@ -256,10 +209,6 @@
       } catch (error) {
         return [...defaultProducts];
       }
-    }
-
-    function saveProducts() {
-      localStorage.setItem(STORAGE_KEYS.products, JSON.stringify(products));
     }
 
     function escapeHTML(value) {
@@ -276,24 +225,9 @@
       return money.format(Number(value) || 0) + ' €';
     }
 
-    function renderSiteSettings() {
-      document.title = settings.shopName || 'Claud\'s Shop';
-      document.getElementById('site-title').textContent = (settings.shopName || 'Claud\'s Shop').toUpperCase();
-      document.getElementById('eyebrow-text').textContent = settings.eyebrow || 'Privatna kolekcija';
-      document.getElementById('hero-title').textContent = settings.heroTitle || 'Claud\'s shop';
-      document.getElementById('hero-text').textContent = settings.heroText || defaultSettings.heroText;
-      document.getElementById('bank-name').textContent = settings.bankName || 'Klaudija Birkić';
-      document.getElementById('bank-iban').textContent = settings.bankIban || 'HR6423600001300206618';
-      document.getElementById('bank-model').textContent = settings.bankModel || 'HR00';
-      document.getElementById('bank-reference').textContent = settings.bankReference || '6829324089';
-      const paymentLink = document.getElementById('online-payment-link');
-      paymentLink.href = settings.onlinePaymentUrl || 'https://aircash.eu';
-      paymentLink.textContent = 'Otvori online plaćanje ↗';
-    }
-
     function renderCategories() {
       const container = document.getElementById('categories-grid');
-      container.innerHTML = defaultCategories.map(category => `
+      container.innerHTML = categories.map(category => `
         <button class="category-button${activeCategory === category.name ? ' active' : ''}" type="button" data-category="${escapeHTML(category.name)}" aria-pressed="${activeCategory === category.name}">
           <span class="category-icon" aria-hidden="true">${category.icon}</span><span>${escapeHTML(category.name)}</span>
         </button>`).join('');
@@ -414,24 +348,16 @@
         alert('Dodajte barem jedan proizvod u košaricu prije narudžbe.');
         return;
       }
-
+      // WhatsApp broj treba biti u međunarodnom formatu bez +, razmaka i početne nule.
+      const whatsappNumber = '385955432154';
       const payment = document.querySelector('input[name="payment"]:checked');
       const paymentMethod = payment ? payment.value : 'Uplata na račun';
       const total = cart.reduce((sum, item) => sum + Number(item.price), 0);
-
-      if (paymentMethod === 'Online plaćanje') {
-        const url = settings.onlinePaymentUrl || 'https://aircash.eu';
-        window.open(url, '_blank', 'noopener,noreferrer');
-        return;
-      }
-
-      const whatsappNumber = settings.whatsappNumber || '385955432154';
       const itemLines = cart.map(item => `- ${item.title} (${formatPrice(item.price)})`).join('\n');
       const paymentInfo = paymentMethod.includes('Aircash')
-        ? 'Aircash: ' + (settings.onlinePaymentUrl || 'https://aircash.eu')
-        : `Primatelj: ${settings.bankName || 'Klaudija Birkić'}\nIBAN: ${settings.bankIban || 'HR6423600001300206618'}\nModel: ${settings.bankModel || 'HR00'} | Poziv na broj: ${settings.bankReference || '6829324089'}`;
-
-      const message = `Pozdrav! Želim naručiti iz Claud's shopa:\n\n${itemLines}\n\nUKUPNO: ${formatPrice(total)}\nNačin plaćanja: ${paymentMethod}\n\n${paymentInfo}\n\nJavljam se za potvrdu.`;
+        ? 'Aircash: https://aircash.eu'
+        : 'Primatelj: Klaudija Birkić\nIBAN: HR6423600001300206618\nModel: HR00 | Poziv na broj: 6829324089';
+      const message = `Pozdrav Klaudija! Želim naručiti iz Claud's shopa:\n\n${itemLines}\n\nUKUPNO: ${formatPrice(total)}\nNačin plaćanja: ${paymentMethod}\n\n${paymentInfo}\n\nJavljam se za dogovor oko dostave.`;
       const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
       window.open(url, '_blank', 'noopener,noreferrer');
     }
@@ -470,7 +396,6 @@
       if (event.key === 'Escape') document.querySelectorAll('.modal-backdrop.open').forEach(modal => closeModal(modal.id));
     });
 
-    renderSiteSettings();
     renderCategories();
     renderProducts();
     updateCart();
