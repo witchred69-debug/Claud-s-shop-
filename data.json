@@ -1,12 +1,7 @@
 {
   "products": [],
   "settings": {
-    "shipping": {
-      "tisak": null,
-      "boxnow": null,
-      "posta": null,
-      "pickup": 0
-    },
+    "shipping": {"tisak": null, "boxnow": null, "posta": null, "pickup": 0},
     "terms": "Paketi se šalju nakon vidljive uplate. Povrat i reklamacije dogovaraju se izravno putem WhatsAppa."
   }
 }
